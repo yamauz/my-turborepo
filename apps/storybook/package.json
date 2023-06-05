@@ -7,8 +7,9 @@
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "test": "test-storybook",
-    "build-storybook": "storybook build"
+    "test": "concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"yarn build-storybook --quiet && pnpx http-server storybook-static --port 6006 --silent\" \"wait-on tcp:6006 && yarn test-storybook\"",
+    "test-storybook": "test-storybook --no-cache",
+    "build-storybook": "storybook build "
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -30,12 +31,15 @@
     "@typescript-eslint/eslint-plugin": "^5.59.0",
     "@typescript-eslint/parser": "^5.59.0",
     "@vitejs/plugin-react-swc": "^3.0.0",
+    "concurrently": "^8.1.0",
     "eslint": "^8.38.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
+    "http-server": "^14.1.1",
     "prop-types": "^15.8.1",
     "storybook": "^7.0.18",
     "typescript": "^5.0.2",
-    "vite": "^4.3.9"
+    "vite": "^4.3.9",
+    "wait-on": "^7.0.1"
   }
 }
