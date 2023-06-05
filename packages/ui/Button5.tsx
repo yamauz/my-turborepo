@@ -4,7 +4,7 @@ interface Props {
   label?: string;
 }
 
-export const Button = ({
+export const Button5 = ({
   primary = false,
   label = "Boop",
   size = "small",
